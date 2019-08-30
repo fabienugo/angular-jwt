@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
 import { AppComponent } from './app.component';
@@ -13,6 +15,10 @@ import { TopbarComponent } from './shared/components/topbar/topbar.component';
 
 // modules
 import { LayoutModule } from './shared/layout/layout.module';
+
+// routing
+import { APP_ROUTING } from './app.routing';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +32,10 @@ import { LayoutModule } from './shared/layout/layout.module';
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(APP_ROUTING)
   ],
   providers: [],
   bootstrap: [AppComponent]
