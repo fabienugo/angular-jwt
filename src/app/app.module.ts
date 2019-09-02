@@ -19,6 +19,8 @@ import { LayoutModule } from './shared/layout/layout.module';
 // routing
 import { APP_ROUTING } from './app.routing';
 
+// services
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { APP_ROUTING } from './app.routing';
     ReactiveFormsModule,
     RouterModule.forRoot(APP_ROUTING)
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
