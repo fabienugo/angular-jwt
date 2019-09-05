@@ -39,15 +39,19 @@ export class AuthService {
   }
 
   /**
-   * Permet à un utilisateur de s'inscrirew
+   * Permet à un utilisateur de s'inscrire
    * @param user le user qui s'inscrit
    */
   signup(user: User): Observable<User> {
-    return this.http.post<User>('/api/auth', user);
+    return this.http.post<User>('/api/login_check', user);
   }
 
+  /**
+   * Permet à un utilisateur de se connecter
+   * @param credentials le login/mot de passe
+   */
   signin(credentials: { email: string, password: string }): Observable<string> {
-    return this.http.post<string>('/api/auth/token', credentials).pipe(
+    return this.http.post<string>('http://localhost:8000/api/login_check', credentials).pipe(
       tap((token: string) => {
         this.jwtToken.next({
           isAuthenticated: true,
@@ -57,5 +61,12 @@ export class AuthService {
         localStorage.setItem('jwt', token); // Stock notre token de manière persistente
       })
     );
+  }
+
+  /**
+   * Permet de se déconnecter et de supprimer le token
+   */
+  logout() {
+    localStorage.removeItem('jwt');
   }
 }
