@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient
-  ) { 
+  ) {
     this.initToken();
   }
 
@@ -43,23 +43,25 @@ export class AuthService {
    * @param user le user qui s'inscrit
    */
   signup(user: User): Observable<User> {
-    return this.http.post<User>('/api/login_check', user);
+    return this.http.post<User>('http://localhost:8000/api/login_check', user);
   }
 
   /**
    * Permet à un utilisateur de se connecter
    * @param credentials le login/mot de passe
    */
-  signin(credentials: { email: string, password: string }): Observable<string> {
+  signin(credentials: { username: string, password: string }): Observable<string> {
+    console.log('TCL: AuthService -> credentials', credentials);
     return this.http.post<string>('http://localhost:8000/api/login_check', credentials).pipe(
       tap((token: string) => {
+        console.log('dans le tap');
         this.jwtToken.next({
           isAuthenticated: true,
           // tslint:disable-next-line:object-literal-shorthand
           token: token
         });
         localStorage.setItem('jwt', token); // Stock notre token de manière persistente
-      })
+  })
     );
   }
 

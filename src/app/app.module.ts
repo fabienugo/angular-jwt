@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // components
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { AuthService } from './shared/services/auth.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTING)
   ],
   providers: [
